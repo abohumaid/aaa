@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تكرار مع تحكم مستقل</title>
+  <style>
+
+    .container {
+      width: 100%;
+      text-align: center;
+    }
+
+    .section {
+      margin: 10px;
+    }
+
+    .cbox {
+      display: none;
+    }
+
+    .button1 {
+      display: block;
+      width: 100%;
+      height: 60px;
+      font-size: 18px;
+      background-color: #555657;
+      color: white;
+      border: none;
+      cursor: pointer;
+      line-height: 60px;
+      border-radius: 15px;
+    }
+
+    .dropdown {
+      width: 100%;
+      height: 100%;
+      background-color: #fdd21c;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease-in-out;
+      display: flex;
+      text-align: right;
+      border-radius: 15px;
+      padding-bottom: 10px;
+      direction: rtl;
+    }
+
+    .cbox:checked + label + .dropdown {
+      max-height: 60px;
+
+    }
+
+    .p1 {
+      color: #555657;
+      font-size: 20px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- القسم الأول -->
+    <div class="section">
+      <input type="checkbox" id="toggle1" class="cbox">
+      <label class="button1" for="toggle1">عرض المزيد 1</label>
+      <div class="dropdown">
+        <ul>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+        </ul>
+       
+      </div>
+    </div>
+
+    <!-- القسم الثاني -->
+    <div class="section">
+      <input type="checkbox" id="toggle2" class="cbox">
+      <label class="button1" for="toggle2">عرض المزيد 2</label>
+      <div class="dropdown">
+        <ul>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <input type="checkbox" id="toggle3" class="cbox">
+      <label class="button1" for="toggle3">عرض المزيد 2</label>
+      <div class="dropdown">
+        <ul>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+
+          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.cbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const dropdown = this.nextElementSibling.nextElementSibling;
+        if (this.checked) {
+          // حساب الارتفاع الفعلي للمحتوى
+          const contentHeight = dropdown.querySelector('ul').scrollHeight;
+          dropdown.style.maxHeight = contentHeight + 'px';
+        } else {
+          dropdown.style.maxHeight = '0';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
