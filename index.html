@@ -1,126 +1,2314 @@
+
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>تكرار مع تحكم مستقل</title>
-  <style>
 
-    .container {
-      width: 100%;
-      text-align: center;
-    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    .section {
-      margin: 10px;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    .cbox {
-      display: none;
-    }
+    <title>TANK | SDA PRODUCTS</title>
 
-    .button1 {
-      display: block;
-      width: 100%;
-      height: 60px;
-      font-size: 18px;
-      background-color: #555657;
-      color: white;
-      border: none;
-      cursor: pointer;
-      line-height: 60px;
-      border-radius: 15px;
-    }
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="Sales CSS/salescss.css" rel="stylesheet">
+    <link href="css/sliderbraun.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/alertmsg.css" rel="stylesheet">
 
-    .dropdown {
-      width: 100%;
-      height: 100%;
-      background-color: #fdd21c;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease-in-out;
-      display: flex;
-      text-align: right;
-      border-radius: 15px;
-      padding-bottom: 10px;
-      direction: rtl;
-    }
+    <!-- DataTables CSS -->
+    <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
-    .cbox:checked + label + .dropdown {
-      max-height: 60px;
+    <!-- DataTables Responsive CSS -->
+    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
-    }
 
-    .p1 {
-      color: #555657;
-      font-size: 20px;
-      margin: 0;
-    }
-  </style>
+    <!-- Custom CSS -->
+    <style>
+
+        .info-message {
+            position: fixed;
+            width: 700px;
+            height: 150px;
+            background-color: rgba(0, 0, 0, 0.85);
+            right: 0;
+            bottom: 0;
+            margin-bottom: 50px;
+            border-top-left-radius: 10px;
+        }
+
+        .mssg-content {
+            margin: 15px;
+        }
+
+        .fa-close {
+            float: left;
+            font-size: 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .glow {
+            font-size: 80px;
+            color: #fff;
+            text-align: center;
+            -webkit-animation: glow 1s ease-in-out infinite alternate;
+            -moz-animation: glow 1s ease-in-out infinite alternate;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @-webkit-keyframes glow {
+            from {
+            }
+
+            to {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+            }
+        }
+
+
+
+        /*setup*/
+        @font-face {
+            font-family: 'Monoton';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Monoton'), local('Monoton-Regular'), url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Iceland';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Iceland'), local('Iceland-Regular'), url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Pacifico';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Pacifico Regular'), local('Pacifico-Regular'), url(http://themes.googleusercontent.com/static/fonts/pacifico/v5/yunJt0R8tCvMyj_V4xSjafesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'PressStart';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Press Start 2P'), local('PressStart2P-Regular'), url(http://themes.googleusercontent.com/static/fonts/pressstart2p/v2/8Lg6LX8-ntOHUQnvQ0E7o3dD2UuwsmbX3BOp4SL_VwM.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Audiowide';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Audiowide'), local('Audiowide-Regular'), url(http://themes.googleusercontent.com/static/fonts/audiowide/v2/8XtYtNKEyyZh481XVWfVOj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Vampiro One';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Vampiro One'), local('VampiroOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/vampiroone/v3/Ho2Xld8UbQyBA8XLxF1_NYbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+        }
+
+
+
+        /*neon*/
+
+
+
+        #red {
+            color: #FF1177;
+            text-shadow: 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #FF1177, 0 0 0 #FF1177, 0 0 0 #FF1177, 0 0 0 #FF1177, 0 0 0 #FF1177;
+        }
+
+            #red.redGlow {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+            }
+
+        #blue {
+            font-size: 1.5em;
+            color: #228DFF;
+            font-family: Iceland;
+            text-shadow: 0 0 0 #FFF, 0 0 0 #FFF, 0 0 0 #FFF, 0 0 0 rgba(34,141,255,1), 0 0 0 #228DFF, 0 0 0 #228DFF, 0 0 0 #228DFF, 0 0 0 #228DFF;
+        }
+
+            #blue.blueGlow {
+                color: #FFFFFF;
+                text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+            }
+
+        #yellow {
+            color: #FFDD1B;
+            font-family: Pacifico;
+            text-shadow: 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #FFDD1B, 0 0 0 #FFDD1B, 0 0 0 #FFDD1B, 0 0 0 #FFDD1B, 0 0 0 #FFDD1B;
+        }
+
+            #yellow.yellowGlow {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+            }
+
+        #green {
+            color: #B6FF00;
+            font-family: PressStart;
+            font-size: 0.8em;
+            text-shadow: 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #B6FF00, 0 0 0 #B6FF00, 0 0 0 #B6FF00, 0 0 0 #B6FF00, 0 0 0 #B6FF00;
+        }
+
+            #green.greenGlow {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+            }
+
+        #orange {
+            color: #FF9900;
+            font-family: Audiowide;
+            text-shadow: 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #FF9900, 0 0 0 #FF9900, 0 0 0 #FF9900, 0 0 0 #FF9900, 0 0 0 #FF9900;
+        }
+
+            #orange.orangeGlow {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+            }
+
+        #violet {
+            color: #BA01FF;
+            font-family: Vampiro One;
+            text-shadow: 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #fff, 0 0 0 #ff00de, 0 0 0 #ff00de, 0 0 0 #ff00de, 0 0 0 #ff00de, 0 0 0 #ff00de;
+        }
+
+            #violet.violetGlow {
+                color: #ffffff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+            }
+    </style>
+
+    <script>
+        function areas() {
+            var myWindow = window.open('governorate/engin/pages/Gov.html', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=100,left=90,width=1200,height=600');
+
+        }
+        function FAQs() {
+            var myWindow = window.open('governorate/engin/pages/General-FAQs.html', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=100,left=90,width=1200,height=600');
+
+        }
+        function MinloInfo() {
+            var myWindow = window.open('governorate/engin/pages/Minlo-Info.html', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=100,left=90,width=1200,height=600');
+
+        }
+        function SDAPriceList() {
+			var myWindow = window.open('Price List/engin/pages/SDA-PL.html', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=100,left=90,width=1200,height=600');
+
+        }
+    </script>
+
 </head>
+
 <body>
 
-  <div class="container">
+    <nav style="right: 30px; top:-30px" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
 
-    <!-- القسم الأول -->
-    <div class="section">
-      <input type="checkbox" id="toggle1" class="cbox">
-      <label class="button1" for="toggle1"> adam</label>
-      <div class="dropdown">
-        <ul>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-        </ul>
-       
-      </div>
+            <div class="navbar-header">
+                <span class="sr-only">Toggle navigation</span>
+                <a class="navbar-brand" href="Sales_Index.html">
+                    <img style="padding-top: 25px; width: 110px" src="img/minlo-logo.png" class="img-resposive center-block" />
+                </a>
+                <a class="navbar-brand" onClick=' areas()' href='#'>
+                    <img style="padding-top: 25px; width: 50px" src="governorate/assets/image/Location1.png" class="img-resposive center-block" />
+                </a>
+                <a class="navbar-brand" onClick=' FAQs()' href='#'>
+                    <img style="padding-top: 25px; width: 50px; height: 80px" src="New Images/FAQs.gif" class="img-resposive center-block" />
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tank<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li style="text-align: center" id="#">
+                                <a href="Filters.html">Filters</a>
+                            </li>
+                            <li style="text-align: center" id="#">
+                                <a href="Coolers.html">Coolers</a>
+                            </li>
+                            <li style="text-align: center" id="#">
+                                <a href="SDA_Products.html">SDA</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Koldair<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li style="text-align: center" id="#">
+                                <a href="Koldairs.html">مبردات المياه</a>
+                            </li>
+                            <li style="text-align: center" id="#">
+                                <a href="Air_Conditioners.html">تكييفات</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li id="#">
+                        <a href="Braun.html">Braun</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Warranty.html">تعليمات الضمان</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Maintenance.html">معلومات الصيانة</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Payments.html">طرق الدفع</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Delivery.html">مواعيد التوصيل</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Campaigns.html">Campaigns</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Process.html">Basic Process</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Call_Types.html">Call Types</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Updates.html">Updates</a>
+                    </li>
+
+                    <li id="#">
+                        <a href="Contacts.html">Contacts</a>
+                    </li>
+
+                    <li id="#" class="attention">
+                        <a href="#"><span5 style="content: ' \1F4DE';">&#128222;</span5> 16016</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container-fluid" style="padding-bottom: 100px; margin-top: -40px">
+
+
+        <section id="TankProduct-content" class="active">
+            <div class="row">
+                <div class="col-md-2">
+                    <br>
+                    <div class="list-group">
+
+                        <a id="#" href="#" class="list-group-item list-head">Blenders<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                        <div id="list2-content" class="list-group inactive">
+                            <a id="BLDetails" href="#" class="list-group-item active">Blenders Details</a>
+                            <a id="Blenders" href="#" class="list-group-item active">Blenders</a>
+                            <a id="PBlenders" href="#" class="list-group-item active">Personal Blenders</a>
+                        </div>
+
+                        <a id="#" href="#" class="list-group-item list-head">Hand Blenders</a>
+
+                        <a id="KETTLES" href="#" class="list-group-item list-head">Kettles</a>
+
+                        <a id="#" href="#" class="list-group-item list-head">Juicers</a>
+
+                        <a id="#" onClick='SDAPriceList()' href='#' class="list-group-item list-head">Price List</a>
+
+                        <a id="#" href="#" class="list-group-item list-head"><img height="30" width="42" src="New Images/QUEST.gif"> اسألني</a>
+
+                    </div>
+
+                    <a class="navbar-brand" onClick=' MinloInfo()' href='#'>
+                        <img style="height: 200px" src="img/ci.png" class="img-responsive center-block" data-toggle="modal" data-target=".bs-example-modal-lg" />
+                    </a>
+
+                </div>
+
+                <div class="col-lg-10">
+
+                    <section id="MainSec-content" class="active">
+                        <br>
+                        <div style="margin-left: 20px; margin-top: 5px; height: 650px; width: 1000px" class="container">
+
+                            <div class="row">
+                                <div class="col-lg-10 text-center">
+                                    <div class="slider" style="height: 420px; width: 1000px">
+                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 420px; width: 1000px">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                            </ol>
+
+                                            <!-- Wrapper for slides -->
+                                            <div class="carousel-inner" role="listbox">
+                                                <div style="height: 420px; width: 1000px" class="item active">
+                                                    <img style="height: 420px; width: 1000px" src="New Images/SDA_1.PNG" alt="...">
+                                                    <div class="carousel-caption"></div>
+                                                </div>
+                                                <div style="height: 420px; width: 1000px" class="item">
+                                                    <img style="height: 420px; width: 1000px" src="New Images/SDA_2.PNG" alt="...">
+                                                    <div class="carousel-caption"></div>
+                                                </div>
+                                                <div style="height: 420px; width: 1000px" class="item">
+                                                    <img style="height: 420px; width: 1000px" src="New Images/minlo-logo-svg.svg" alt="...">
+                                                    <div class="carousel-caption"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Controls -->
+                                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                        </div>
+                    </section>
+
+                    <section id="KETTLES-content" class="inactive">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <div class="thumbnail1 feat-body">
+
+                                            <div id="KETTLESINTRO-content" class="feat-txt-box2 active">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLESINTROT1" data-toggle="tab">Kettles Products</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLESINTROT1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <img src="New Images/Kettles1.PNG" class="img-responsive center-block">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES0-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                     <li class="active"><a href="#KETTLES0T1" data-toggle="tab">Kettles Details</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES0T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <iframe src="./sales/docs/Kettles Details.pdf"></iframe>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES1-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLES1T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES1T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".Prod1" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SAFE TOUCH CLASSIC.jpg" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Safe Touch Classic</span><br> </h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+                                                                                                        <li>بودر بينك - ابيض - رمادي فاتح</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 999</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade Prod1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Safe Touch Classic</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#Prod1slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="Prod1slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>الطاقة : 1500 وات .</li>
+                                                                                                                        <li>السعة : 1.5 لتر .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز .</li>
+                                                                                                                        <li>حماية ضد إحتراق الجهاز بسبب التشغيل الجاف .</li>
+                                                                                                                        <li>تصميم غطاء بفتحة واسعة .</li>
+                                                                                                                        <li>مفتاح تشغيل / إيقاف مع مؤشر ضوئي .</li>
+                                                                                                                        <li>وعاء من الفولاذ المقاوم للصدأ SUS 304 .</li>
+                                                                                                                        <li>جدار مزدوج بوعاء داخلى من الاستانليس ستيل 304 بخاصية اللمس الآمن .</li>
+                                                                                                                        <li>أمان مزدوج ضد السخونة الزائدة .</li>
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES2-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLES2T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES2T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".Prod2" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/GLASS CLASSIC.jpg" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Glass Classic</span><br> </h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>ابيض - اسود</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 1500</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade Prod2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Glass Classic</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#Prod2slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="Prod2slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>الطاقة : 1850 وات .</li>
+                                                                                                                        <li>السعة : 1.7 لتر .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز .</li>
+                                                                                                                        <li>حماية ضد إحتراق الجهاز بسبب التشغيل الجاف .</li>
+                                                                                                                        <li>تصميم غطاء بفتحة واسعة .</li>
+                                                                                                                        <li>مفتاح تشغيل / إيقاف .</li>
+                                                                                                                        <li>وعاء من الزجاج عالى الجودة .</li>
+                                                                                                                        <li>أمان مزدوج ضد السخونة الزائدة .</li>
+                                                                                                                        <li>مقياس سعة مدرج باللتر .</li>
+                                                                                                                        <li>ضوء LED مدمج .</li>
+                                                                                                                        <li>وحدة تحكم STRIX TECHNOLOGY .</li>
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES3-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLES3T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES3T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".Prod3" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SAFE TOUCH  DIGITAL.jpg" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Safe Touch Digital</span><br> </h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+                                                                                                        <li>الجسم ابيض - روز جولد - إطار فضي</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 2350 </h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade Prod3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Safe Touch Digital</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#Prod3slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="Prod3slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>الطاقة : 1500 وات .</li>
+                                                                                                                        <li>السعة : 1.5 لتر .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز .</li>
+                                                                                                                        <li>حماية ضد إحتراق الجهاز بسبب التشغيل الجاف .</li>
+                                                                                                                        <li>تصميم غطاء بفتحة واسعة .</li>
+                                                                                                                        <li>وعاء من الزجاج عالى الجودة .</li>
+                                                                                                                        <li>جدار مزدوج و وعاء داخلى من الزجاج بخاصية اللمس الآمن .</li>
+                                                                                                                        <li>مقياس سعة شفاف مدرج باللتر .</li>
+                                                                                                                        <li>تحكم باللمس .</li>
+                                                                                                                        <li>شاشة رقمية .</li>
+                                                                                                                        <li>ميزة الحفاظ على حرارة المياه لمدة 8 ساعات .</li>
+                                                                                                                        <li>التحكم بدرجة الحرارة .</li>
+                                                                                                                        <li>تغيير لون ضوء LED بناءً على درجة حرارة الماء ( كل 10 درجات تبدأ من 50 درجة مئوية ) .</li>
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES4-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLES4T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES4T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".Prod4" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SAFE TOUCH GL.jpg" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Safe Touch GL</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>الجسم ابيض - روز جولد - إطار فضي</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 1850</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade Prod4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Safe Touch GL</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#Prod4slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="Prod4slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>الطاقة : 1500 وات .</li>
+                                                                                                                        <li>السعة : 1.5 لتر .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز .</li>
+                                                                                                                        <li>حماية ضد الإحتراق بسبب التشغيل الجاف .</li>
+                                                                                                                        <li>تصميم غطاء بفتحة واسعة .</li>
+                                                                                                                        <li>مفتاح تشغيل / إيقاف .</li>
+                                                                                                                        <li>ضوء ليد مدمج .</li>
+                                                                                                                        <li>وعاء من الزجاج عالى الجودة .</li>
+                                                                                                                        <li>جدار مزدوج و وعاء داخلى من الزجاج بخاصية اللمس الآمن .</li>
+                                                                                                                        <li>مقياس سعة شفاف مدرج باللتر .</li>
+                                                                                                                        <li>وحدة تحكم STRIX TECHNOLOGY .</li>
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLES5-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLES5T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLES5T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".Prod5" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SAFE TOUCH SMART.jpg" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Safe Touch Smart</span><br> </h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+                                                                                                        <li>اسود</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 3000</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade Prod5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Safe Touch Smart</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#Prod5slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="Prod5slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>الطاقة : 1850 وات .</li>
+                                                                                                                        <li>السعة: 1.7 لتر .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز .</li>
+                                                                                                                        <li>حماية ضد إحتراق الجهاز بسبب التشغيل الجاف .</li>
+                                                                                                                        <li>تصميم غطاء بفتحة واسعة .</li>
+                                                                                                                        <li>تحكم باللمس .</li>
+                                                                                                                        <li>شاشة رقمية LED .</li>
+                                                                                                                        <li dir="rtl">3 أوضاع مضبوطة مسبقاً لميزة الحفاظ على حرارة الماء ( 40C-60C-80C ) لمدة 8 ساعات .</li>
+                                                                                                                        <li>جدار مزدوج بوعاء داخلى من الاستانليس ستيل 304 بخاصية اللمس الآمن أمان مزدوج ضد السخونة الزائدة .</li>
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="KETTLESFAQS-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#KETTLESFAQST1" data-toggle="tab">اسألني</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="KETTLESFAQST1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="panel-group" id="#">
+
+                                                                                <div class="panel panel-default" style="min-height: 20px">
+                                                                                    <div class="panel-heading">
+                                                                                        <h4 class="panel-title">
+                                                                                            <a data-toggle="collapse" data-parent="#accordion" href="#Kfaqs0">
+
+                                                                                            </a>
+                                                                                        </h4>
+                                                                                    </div>
+                                                                                    <div id="Kfaqs0" class="panel-collapse collapse">
+                                                                                        <div class="panel-body">
+                                                                                            <ul>
+                                                                                                <li></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="thumbnail">
+                                    <img style="height: 60px; width: 160px" src="New Images/Kettles_Word.png" alt="...">
+                                </div>
+                                <div class="list-group">
+                                    <a id="KETTLES0" href="#" class="list-group-item">Kettles Details</a>
+                                    <a id="KETTLES1" href="#" class="list-group-item">Safe Touch Classic</a>
+                                    <a id="KETTLES2" href="#" class="list-group-item">Glass Classic</a>
+                                    <a id="KETTLES3" href="#" class="list-group-item">Safe Touch Digital</a>
+                                    <a id="KETTLES4" href="#" class="list-group-item">Safe Touch GL</a>
+                                    <a id="KETTLES5" href="#" class="list-group-item">Safe Touch Smart</a>
+                                    <a id="KETTLESFAQS" href="#" class="list-group-item"><img height="30" width="42" src="New Images/QUEST.gif"> اسألني</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section id="BLDetails-content" class="inactive">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="thumbnail feat-body">
+
+                                            <div id="BLDetails1-content" class="feat-txt-box2 active">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BLDetails1T1" data-toggle="tab">Blenders Details</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BLDetails1T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <iframe src="sales/docs/Blenders_Details.pdf" frameborder="1" name="filter-delivery"></iframe>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="Blenders-content" class="inactive">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <div class="thumbnail1 feat-body">
+
+                                            <div id="BlendersINTRO-content" class="feat-txt-box2 active">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BlendersINTRO1" data-toggle="tab">Blenders Products</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BlendersINTRO1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <img src="New Images/Blenders_Details.PNG" class="img-responsive center-block">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="BLEND1-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BLEND1T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BLEND1T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".BProd1" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SUPER BLENDER 800W GL.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Super Blender + GL</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>800 وات + GL 900 M</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span>  2750</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade BProd1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Super Blender + GL</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#BProd1slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="BProd1slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>19,000 دورة / دقيقة : خلط عالي السرعة يصل إلى 19,000 دورة / دقيقة .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز، 800 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد : ميزة أمان ضد ارتفاع حرارة المحرك و مزود بمروحة تبريد مدمجة مدمجة .</li>
+                                                                                                                        <li>تصميم شفرات متقدم : 4 شفرات من الاستانليس ستيل 420 حادة لضمان كفاءة الخلط .</li>
+                                                                                                                        <li>إبريق زجاجي عالي الجودة : سعة 1.5 لتر مصمم للخلط البارد والساخن .</li>
+                                                                                                                        <li>شفرات قابلة للإزالة لسهولة التنظيف .</li>
+                                                                                                                        <li>قفل أمان مدمج مع غطاء الوعاء لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>مقبض تحكم بالسرعة بسرعتين + وضع النبض .</li>
+                                                                                                                        <li>مؤشر إضاءة ليد قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                                                                                        <li>زجاجة بلاستيكية خالية من الـ BPA بسعة 900 مل مع غطاء سهل الفتح و إمكانية تركيب الشفرات بها لخلط العصائر و الكميات الصغيرة .</li>
+                                               
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="BLEND2-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BLEND2T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BLEND2T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".BProd2" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SUPER BLENDER 800W GL + GR.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px"> Super Blender + GL + GR</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>800 وات + GL 900 M + GR 500 M</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 3250</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade BProd2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Super Blender + GL + GR</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#BProd2slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="BProd2slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>19,000 دورة / دقيقة : خلط عالي السرعة يصل إلى 19,000 دورة / دقيقة .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز 800 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد : ميزة أمان ضد ارتفاع حرارة المحرك و مزود بمروحة تبريد مدمجة مدمجة .</li>
+                                                                                                                        <li>4تصميم شفرات متقدم : 4 شفرات من الاستانليس ستيل 420 حادة لضمان كفاءة الخلط .</li>
+                                                                                                                        <li>إبريق زجاجي عالي الجودة : سعة 1.5 لتر مصمم للخلط البارد والساخن .</li>
+                                                                                                                        <li>شفرات قابلة للإزالة لسهولة التنظيف .</li>
+                                                                                                                        <li>قفل أمان مدمج مع غطاء الوعاء لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>مقبض تحكم بالسرعة بسرعتين + وضع النبض .</li>
+                                                                                                                        <li>مؤشر إضاءة ليد قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                                                                                        <li>مطحنة ذات وعاء من الإستانليس ستيل 304 بسعة 500 مل و غطاء من البلاستيك عالى الجودة شفاف .</li>
+                                                                                                                        <li>زجاجة بلاستيكية خالية من الـ BPA بسعة 900 مل مع غطاء سهل الفتح و إمكانية تركيب الشفرات بها لخلط العصائر و الكميات الصغيرة .</li>
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="BLEND3-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BLEND3T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BLEND3T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".BProd3" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SMART BLENDER 1500W GL.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Smart Blender + GL</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>1500 وات + GL</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 3900</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade BProd3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Smart Blender + GL</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#BProd3slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="BProd3slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>22,000 دورة / دقيقة : خلط عالي السرعة عند 22,000 دورة / دقيقة ±15% .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز 1500 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد: ميزة أمان ضد ارتفاع حرارة المحرك و مزود بمروحة تبريد مدمجة .</li>
+                                                                                                                        <li>تصميم شفرات متقدم : 4 شفرات سماكة 1.5 مم استانليس ستيل 420 مسننة و حادة لتركيز القوة على المكونات الصلبة .</li>
+                                                                                                                        <li>إبريق زجاجي عالي الجودة : سعة 1.8 لتر مصمم للخلط البارد والساخن .</li>
+                                                                                                                        <li>مقبض تحكم سلس بـ 10 سرعات + وضع النبض .</li>
+                                                                                                                        <li>4 برامج مسبقة : جرش الثلج - السموزى - الشوربة - تنظيف الوعاء .</li>
+                                                                                                                        <li>شاشة رقمية : تعرض البرنامج النشط، السرعة، ومدة التشغيل .</li>
+                                                                                                                        <li>شفرات قابلة للإزالة لسهولة التنظيف .</li>
+                                                                                                                        <li>قفل أمان مدمج لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                                                                               
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="BLEND4-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#BLEND4T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="BLEND4T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".BProd4" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/POWER BLENDER 2000W GL.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Power Blender + GL</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>2000 وات + GL</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 5750</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade BProd4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Power Blender + GL</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#BProd4slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="BProd4slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>حتى 31,000 دورة / دقيقة : خلط عالي السرعة عند 27000 ±15% دورة / دقيقة .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز 2000 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد : ميزة أمان ضد ارتفاع حرارة المحرك ومزود بمروحة تبريد مدمجة وعاء الخلط سعة 2 لتر من مادة التريتان عالية الجودة .</li>
+                                                                                                                        <li>تصميم شفرات متقدم : 6 شفرات سماكة 2 مم استانليس ستيل 420 مسننة و حادة لتركيز القوة على المكونات الصلبة .</li>
+                                                                                                                        <li>قفل أمان مدمج لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>بدء تشغيل تدريجي لتشغيل سلس .</li>
+                                                                                                                        <li>عصا للتقليب : لتقليب الطعام أثناء الخلط .</li>
+                                                                                                                        <li>قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                         
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="thumbnail">
+                                    <img style="height: 60px; width: 160px" src="New Images/Blenders_Word.png" alt="...">
+                                </div>
+                                <div class="list-group">
+                                    <a id="BLEND1" href="#" class="list-group-item">Super Blender + GL</a>
+                                    <a id="BLEND2" href="#" class="list-group-item">Super Blender<br> GL + GR</a>
+                                    <a id="BLEND3" href="#" class="list-group-item">Smart Blender + GL</a>
+                                    <a id="BLEND4" href="#" class="list-group-item">Power Blender + GL</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section id="PBlenders-content" class="inactive">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <div class="thumbnail1 feat-body">
+
+                                            <div id="PBlendersINTRO-content" class="feat-txt-box2 active">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#PBlendersINTRO1" data-toggle="tab">Personal Blenders</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="PBlendersINTRO1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <img src="New Images/PBlenders_Details.PNG" class="img-responsive center-block">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="PBLEND1-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#PBLEND1T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="PBLEND1T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".PBProd1" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SUPER PERSONAL BLENDER 800 W + Gr.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Super Personl Blender</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>سوبر 800 وات + GR 400 M</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span>  2250</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade PBProd1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Super Personl Blender</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#PBProd1slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="PBProd1slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي عالي الكفاءة، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>23,000 دورة / دقيقة : خلط عالي السرعة حتى 23,000 ±10% دورة / دقيقة .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز 800 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد : ميزة أمان ضد ارتفاع حرارة المحرك ومزود بمروحة تبريد مدمجة .</li>
+                                                                                                                        <li>تصميم شفرات متقدم : 6 شفرات حادة من SS420 مع نظام تحمل عالي المتانة .</li>
+                                                                                                                        <li>زجاجة تريتان خالية من BPA : زجاجة رياضية بلاستيكية بسعة 600 مل .</li>
+                                                                                                                        <li>زجاجة آمنة للغسل في غسالة الصحون مع غطاء .</li>
+                                                                                                                        <li>زر تحكم بالضغط : وضع النبض .</li>
+                                                                                                                        <li>قفل أمان مدمج لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>قاعدة شفرة من السيليكون مقاومة للتسرب .</li>
+                                                                                                                        <li>قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                                                                                        <li>مطحنة بسعة 400 مل مع شفرات من الفولاذ المقاوم للصدأ .</li>
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="PBLEND2-content" class="feat-txt-box2 inactive">
+                                                <div class="row">
+                                                    <div style="direction:rtl;" class="col-lg-12">
+                                                        <div style="direction:rtl" class="panel panel-default">
+
+                                                            <div class="panel-body">
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#PBLEND2T1" data-toggle="tab">تفاصيل المنتج</a></li>
+                                                                </ul>
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+
+                                                                    <div class="tab-pane fade in active" id="PBLEND2T1">
+                                                                        <div class="panel-body">
+                                                                            <br>
+
+                                                                            <div class="row">
+                                                                                <div class="panel-defualt">
+
+                                                                                    <div class="row">
+
+                                                                                        <div class="col-sm-6 col-lg-6 col-md-6">
+                                                                                            <div class="thumbnail thumb-box">
+                                                                                                <div class="over-lay">
+                                                                                                    <button data-toggle="modal" data-target=".PBProd2" type="button" class="btn btn-default v-more center-block">View More</button>
+                                                                                                </div>
+                                                                                                <div class="prod-img">
+                                                                                                    <br><br>
+                                                                                                    <img style="width:120px; height:200px" src="New Images/SMART PERSONAL BLENDER 800 W + Gr.png" class="img-responsive center-block" alt="">
+
+                                                                                                </div>
+
+                                                                                                <div class="caption details-text">
+                                                                                                    <h3 style="margin-top:0px;" class="text-center" dir="ltr"><span style="font-size: 20px">Smart Personal Blender</span><br></h3>
+                                                                                                    <ul style=" padding-right: 0;" class="text-right">
+
+                                                                                                        <li>سمارت 800 وات + GR 400 M</li>
+                                                                                                    </ul>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+
+                                                                                                        <div class="col-sm-0 col-lg-0 col-md-0" style="padding-left: 20px">
+                                                                                                            <ul class="Ava-list list-unstyled">
+                                                                                                                <span>Availability</span>
+                                                                                                                <li>Website <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                                <li>Call Center <i class="fa fa-check-square" aria-hidden="true"></i></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-sm-10 col-lg-10 col-md-10">
+                                                                                                            <h5><span class="price">Before : </span> N/A</h5>
+                                                                                                            <h5><span class="price">After : </span> 2750</h5>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+
+                                                                                                </div>
+                                                                                                <div class="clearfix"></div>
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+
+                                                                                    </div> <!-------------Row End------------->
+
+                                                                                </div>
+
+                                                                                <!-------------Models------------->
+
+                                                                                <div class="modal fade PBProd2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12">
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading">
+                                                                                                            <h4 style="text-align:center">Smart Personal Blender</h4>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-heading -->
+                                                                                                        <div class="panel-body">
+                                                                                                            <!-- Nav tabs -->
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active">
+                                                                                                                    <a href="#PBProd2slide1" data-toggle="tab">مواصفات المنتج</a>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <!-- Tab panes -->
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane fade in active" id="PBProd2slide1">
+                                                                                                                    <br>
+
+                                                                                                                    <ul>
+                                                                                                                        <li>تقنية BlendiPower : محرك نحاسي عالي الكفاءة، تصميم شفرات متقدم مع سرعة دوران عالية لأداء خلط مثالي .</li>
+                                                                                                                        <li>23,000 دورة / دقيقة : خلط عالي السرعة حتى 24,000 ±10% دورة / دقيقة .</li>
+                                                                                                                        <li>220-240 فولت، 50-60 هرتز 800 وات .</li>
+                                                                                                                        <li>محرك كهربائى قوى مزود بملفات نحاسية عالية الجودة .</li>
+                                                                                                                        <li>السلامة والتبريد : ميزة أمان ضد ارتفاع حرارة المحرك ومزود بمروحة تبريد مدمجة .</li>
+                                                                                                                        <li>تصميم شفرات متقدم: 6 شفرات حادة من SS420 مع نظام تحمل عالي المتانة .</li>
+                                                                                                                        <li>زجاجة تريتان خالية من BPA : زجاجة رياضية بلاستيكية بسعة 600 مل .</li>
+                                                                                                                        <li>زجاجة آمنة للغسل في غسالة الصحون مع غطاء .</li>
+                                                                                                                        <li>برنامجين مسبقين : الخلط الناعم والقاسي .</li>
+                                                                                                                        <li>قفل أمان مدمج لتجنب التشغيل الخاطئ .</li>
+                                                                                                                        <li>قاعدة شفرة مزودة بمانع تسريب من السيليكون .</li>
+                                                                                                                        <li>قاعدة مانعة للانزلاق لخلط آمن .</li>
+                                                                                                                        <li>مطحنة بسعة 400 مل مع شفرات من الفولاذ المقاوم للصدأ .</li>
+
+                                                                                                                    </ul>
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- /.panel-body -->
+                                                                                                    </div>
+                                                                                                    <!-- /.panel -->
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="thumbnail">
+                                    <img style="height: 60px; width: 160px" src="New Images/Blenders_Word.png" alt="...">
+                                </div>
+                                <div class="list-group">
+                                    <a id="PBLEND1" href="#" class="list-group-item">Super Personal Blender</a>
+                                    <a id="PBLEND2" href="#" class="list-group-item">Smart Personal Blender</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+
     </div>
 
-    <!-- القسم الثاني -->
-    <div class="section">
-      <input type="checkbox" id="toggle2" class="cbox">
-      <label class="button1" for="toggle2">عرض المزيد 2</label>
-      <div class="dropdown">
-        <ul>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="section">
-      <input type="checkbox" id="toggle3" class="cbox">
-      <label class="button1" for="toggle3">عرض المزيد 2</label>
-      <div class="dropdown">
-        <ul>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
+    <!-- /.container -->
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+        <a href="https://api.whatsapp.com/send?phone=" data-toggle="modal" data-target=".#"><img style="padding-bottom: 10px; margin-left: -10px" src="governorate/assets/image/whatsapp.png" class="img-responsive ftr-btm" data-toggle="modal" data-target=".bs-example-modal-lg" /></a>
+        <a href="https://www.facebook.com/tankwateregypt" data-toggle="modal" data-target=".#"><img style="padding-bottom: 10px; margin-left: -10px" src="governorate/assets/image/Facebook.png" class="img-responsive ftr-btm" data-toggle="modal" data-target=".bs-example-modal-lg" /></a>
+        <a href="https://tankwaters.com/" data-toggle="modal" data-target=".#"><img style="padding-bottom: 10px; margin-left: -10px" src="governorate/assets/image/web.png" class="img-responsive ftr-btm" data-toggle="modal" data-target=".bs-example-modal-lg" /></a>
 
-          <li class="p1"><b> <p class="p1">هذا هو المحتوى الأول</p></b></li>
-        </ul>
-      </div>
-    </div>
 
-  </div>
+        <div class=" cont-footer">
+            <marquee direction="right">
+                <img src="img/minlo-logo-fa.png" />
+                <span>MINLO MINLO MINLO MINLO MINLO MINLO MINLO MINLO MINLO MINLO MINLO MINLO</span>
+                <img src="img/minlo-logo-fa.png" />
+            </marquee>
+            <a href="#"><img style="margin-top: -75px; margin-right: 1030px; width: 125px" src="img/ISON-WHITE.png" class="img-responsive ftr-btm"></a>
+            <div class="clearfix"></div>
 
-  <script>
-    document.querySelectorAll('.cbox').forEach(checkbox => {
-      checkbox.addEventListener('change', function() {
-        const dropdown = this.nextElementSibling.nextElementSibling;
-        if (this.checked) {
-          // حساب الارتفاع الفعلي للمحتوى
-          const contentHeight = dropdown.querySelector('ul').scrollHeight;
-          dropdown.style.maxHeight = contentHeight + 'px';
-        } else {
-          dropdown.style.maxHeight = '0';
-        }
-      });
-    });
-  </script>
+        </div>
+
+    </nav>
+
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jsfram.js"></script>
+    <script src="js/links.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/communication-mail.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+        $(document).ready(function () {
+            $('#dataTables-example1').DataTable({
+                responsive: true
+            });
+        });
+        $(document).ready(function () {
+            $('#dataTables-example2').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+
+
 
 </body>
+
 </html>
