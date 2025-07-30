@@ -587,6 +587,31 @@
             color: #fff;
         }
     </style>
+    <style>
+        /* لمعة متحركة على عناصر الناف بار عند الوقوف */
+        .navbar li {
+            position: relative;
+            overflow: hidden;
+        }
+        .navbar li .shine {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            background: linear-gradient(120deg, transparent 0%, #fff8 40%, #fff 50%, #fff8 60%, transparent 100%);
+            transform: translateX(-100%);
+            animation: shine-move 1.2s linear infinite;
+            z-index: 2;
+            display: none;
+        }
+        .navbar li.active .shine {
+            animation-play-state: running;
+            display: block;
+        }
+        @keyframes shine-move {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
 </head>
 <body>
     <!-- Splash Screen -->
@@ -1859,6 +1884,17 @@
                     if (typeof showAdminLogin === 'function') showAdminLogin();
                 };
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.navbar li[data-section]').forEach(function(li) {
+                if (!li.querySelector('.shine')) {
+                    var shine = document.createElement('span');
+                    shine.className = 'shine';
+                    li.appendChild(shine);
+                }
+            });
         });
     </script>
 </body>
